@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.bondarev.student.residence.common.Gender;
 import ru.bondarev.student.residence.dto.request.StudentRequest;
 import ru.bondarev.student.residence.dto.response.StudentResponse;
-import ru.bondarev.student.residence.entity.Residence;
 import ru.bondarev.student.residence.entity.Student;
 import ru.bondarev.student.residence.mappers.StudentMapper;
 import ru.bondarev.student.residence.repositories.ResidenceRepository;
@@ -14,6 +13,9 @@ import ru.bondarev.student.residence.service.StudentService;
 
 import java.util.List;
 import java.util.stream.Collectors;
+/**
+ * Сервис работы со студентами
+ */
 
 @Service
 @RequiredArgsConstructor
@@ -39,23 +41,16 @@ public class StudentServiceImp implements StudentService {
     @Override
     public void saveStudent(StudentRequest studentRequest) {
 
-        var residence = residenceRepository.findByGender(Gender.valueOf(studentRequest.getGender()));
-
-        if(studentRequest.getGender().equals("MALE")&
-                (residence.getStudents().size() < residence.getCapacity())) {
+        Gender gender = Gender.valueOf(studentRequest.getGender());
+        var residence = residenceRepository.findByGender(gender);
+        //если есть свободные места то сохраняем студента
+        if(residence.getStudents().size() < residence.getCapacity()) {
 
             studentRepository.save( Student.builder()
                                     .name(studentRequest.getName())
-                                    .gender(Gender.MALE)
+                                    .gender(gender)
                                     .residence(residence)
                                     .build());
-        }else if (residence.getStudents().size() < residence.getCapacity()){
-            studentRepository.save( Student.builder()
-                    .name(studentRequest.getName())
-                    .gender(Gender.FEMALE)
-                    .residence(residence)
-                    .build());
-
         }
     }
 

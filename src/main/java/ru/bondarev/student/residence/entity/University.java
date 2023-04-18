@@ -1,7 +1,6 @@
 package ru.bondarev.student.residence.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;

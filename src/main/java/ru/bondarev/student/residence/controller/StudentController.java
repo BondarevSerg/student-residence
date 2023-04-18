@@ -9,7 +9,9 @@ import ru.bondarev.student.residence.dto.response.StudentResponse;
 import ru.bondarev.student.residence.service.Imp.StudentServiceImp;
 
 import java.util.List;
-
+/**
+ * контроллер работы со студентами
+ */
 @RestController
 @RequestMapping("/students")
 @RequiredArgsConstructor

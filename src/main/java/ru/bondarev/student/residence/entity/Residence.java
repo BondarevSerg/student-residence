@@ -1,10 +1,7 @@
 package ru.bondarev.student.residence.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import ru.bondarev.student.residence.common.Gender;
 
 import java.util.List;
@@ -28,17 +25,10 @@ public class Residence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    /**
-//     * название общежития
-//     */
-//    @Column(name = "name")
-//    private String name;
-
     /**
-     * вместимость(не более 100)
+     * вместимость
      */
     @Column(name = "capacity")
-    @Size(max = 5)
     private Long capacity;
 
     /**
@@ -53,7 +43,6 @@ public class Residence {
      */
     @ManyToOne
     @JoinColumn(name = "university_id", referencedColumnName = "id")
-//    @OnDelete(action = OnDeleteAction.CASCADE)
     private University university;
 
     /**

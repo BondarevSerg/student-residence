@@ -1,7 +1,6 @@
 package ru.bondarev.student.residence.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import ru.bondarev.student.residence.common.Gender;
 /**
@@ -28,7 +27,6 @@ public class Student {
      */
 
     @Column(name = "name")
-    @Size(min=2, max=30)
     private String name;
 
     /**
@@ -44,7 +42,6 @@ public class Student {
 
     @ManyToOne
     @JoinColumn(name = "residence_id", referencedColumnName = "id")
-//    @OnDelete(action = OnDeleteAction.CASCADE)
     private Residence residence;
 
 }

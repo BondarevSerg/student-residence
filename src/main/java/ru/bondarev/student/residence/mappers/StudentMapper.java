@@ -12,12 +12,10 @@ public interface StudentMapper {
     StudentMapper INSTANCE = Mappers.getMapper( StudentMapper.class );
     @Mapping(source = "id", target = "id")
     @Mapping(source = "gender.type", target = "gender")
-
     StudentResponse toDTO(Student student);
 
    @Mapping(source = "name", target = "name")
    @Mapping(source = "gender", target = "gender")
-//   @Mapping(source = "residence.gender.type", target = "residence")
-    Student toEntity(StudentRequest studentRequest);
+   Student toEntity(StudentRequest studentRequest);
 
 }
