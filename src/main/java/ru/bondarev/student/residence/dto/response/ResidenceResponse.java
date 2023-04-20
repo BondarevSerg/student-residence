@@ -9,7 +9,7 @@ import java.util.List;
  * dto ответа общежитие
  */
 @Data
-public class ResidenceResponce {
+public class ResidenceResponse {
     /**
      * id
      */

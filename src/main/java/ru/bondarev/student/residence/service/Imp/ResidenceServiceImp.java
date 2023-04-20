@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.bondarev.student.residence.common.Gender;
 import ru.bondarev.student.residence.dto.request.ResidenceRequest;
-import ru.bondarev.student.residence.dto.response.ResidenceResponce;
+import ru.bondarev.student.residence.dto.response.ResidenceResponse;
 import ru.bondarev.student.residence.entity.University;
 import ru.bondarev.student.residence.mappers.ResidenceMapper;
 import ru.bondarev.student.residence.repositories.ResidenceRepository;
@@ -30,7 +30,7 @@ public class ResidenceServiceImp implements ResidenceService {
      * @return
      */
     @Override
-    public ResidenceResponce getResidence(Long id) {
+    public ResidenceResponse getResidence(Long id) {
 
         return ResidenceMapper.MAPPER.toDto(residenceRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Не найдено общежитие по идентификатору")));
@@ -41,7 +41,7 @@ public class ResidenceServiceImp implements ResidenceService {
      * @return
      */
     @Override
-    public List<ResidenceResponce> getAllResidence() {
+    public List<ResidenceResponse> getAllResidence() {
 
         return residenceRepository.findAll().stream()
                 .map(ResidenceMapper.MAPPER::toDto)

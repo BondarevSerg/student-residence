@@ -1,7 +1,7 @@
 package ru.bondarev.student.residence.service;
 
 import ru.bondarev.student.residence.dto.request.ResidenceRequest;
-import ru.bondarev.student.residence.dto.response.ResidenceResponce;
+import ru.bondarev.student.residence.dto.response.ResidenceResponse;
 
 
 import java.util.List;
@@ -12,14 +12,14 @@ public interface ResidenceService {
      *
      * @return
      */
-    ResidenceResponce getResidence(Long id);
+    ResidenceResponse getResidence(Long id);
 
     /**
      * Получение списка всех общежитий
      *
      * @return
      */
-    List<ResidenceResponce> getAllResidence();
+    List<ResidenceResponse> getAllResidence();
 
     /**
      * сохранение нового общежития

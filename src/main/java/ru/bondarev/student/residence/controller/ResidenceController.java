@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.bondarev.student.residence.dto.request.ResidenceRequest;
-import ru.bondarev.student.residence.dto.response.ResidenceResponce;
+import ru.bondarev.student.residence.dto.response.ResidenceResponse;
 import ru.bondarev.student.residence.service.Imp.ResidenceServiceImp;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class ResidenceController {
      */
     @GetMapping("{id}")
 
-    public ResidenceResponce getResidence(@PathVariable ("id")Long id) {
+    public ResidenceResponse getResidence(@PathVariable ("id")Long id) {
         return residenceServiceImp.getResidence(id);
     }
     /**
@@ -35,7 +35,7 @@ public class ResidenceController {
      */
     @GetMapping()
 
-    public List<ResidenceResponce> getAllResidence() {
+    public List<ResidenceResponse> getAllResidence() {
         return residenceServiceImp.getAllResidence();
     }
 

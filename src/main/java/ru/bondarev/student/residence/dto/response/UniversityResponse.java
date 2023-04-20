@@ -1,9 +1,6 @@
 package ru.bondarev.student.residence.dto.response;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.Data;
-import ru.bondarev.student.residence.entity.Residence;
 
 import java.util.List;
 
@@ -25,5 +22,5 @@ public class UniversityResponse {
      * Список общежитий
      */
 
-    private List<ResidenceResponce> residences;
+    private List<ResidenceResponse> residences;
 }

@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ru.bondarev.student.residence.dto.request.ResidenceRequest;
-import ru.bondarev.student.residence.dto.response.ResidenceResponce;
+import ru.bondarev.student.residence.dto.response.ResidenceResponse;
 import ru.bondarev.student.residence.entity.Residence;
 import ru.bondarev.student.residence.entity.Student;
 
@@ -18,7 +18,7 @@ public interface ResidenceMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "university.id", target = "universityId")
     @Mapping(source = "students", target = "studentsName")
-    ResidenceResponce toDto(Residence residence);
+    ResidenceResponse toDto(Residence residence);
     default List<String> map(List<Student> students) {
         return students.stream()
                 .map(Student::getName)
