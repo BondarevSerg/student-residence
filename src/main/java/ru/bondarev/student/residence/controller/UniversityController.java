@@ -3,6 +3,7 @@ package ru.bondarev.student.residence.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.bondarev.student.residence.dto.request.UniversityRequest;
 import ru.bondarev.student.residence.dto.response.UniversityResponse;
@@ -25,7 +26,7 @@ public class UniversityController {
      * @return
      */
     @GetMapping()
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<UniversityResponse> getAllUniversity() {
         return universityServiceImp.getAllUniversity();
     }
@@ -36,7 +37,7 @@ public class UniversityController {
      * @return
      */
     @GetMapping("{id}")
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public UniversityResponse getUniversityById(@PathVariable("id")Long id) {
         return universityServiceImp.getUniversityById(id);
     }
@@ -47,7 +48,7 @@ public class UniversityController {
      * @return
      */
     @PostMapping()
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> create(@RequestBody UniversityRequest universityRequest) {
 
 
@@ -61,10 +62,8 @@ public class UniversityController {
      * @return
      */
     @DeleteMapping("{id}")
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> create(@PathVariable("id")Long id) {
-
-
         universityServiceImp.deleteUniversity(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
@@ -75,6 +74,7 @@ public class UniversityController {
      * @return
      */
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> update(@PathVariable ("id")Long id, @RequestBody UniversityRequest universityRequest) {
 
         universityServiceImp.updateUniversity(id, universityRequest);

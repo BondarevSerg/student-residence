@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import ru.bondarev.student.residence.security.UserDetailsServiceImp;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -30,10 +32,11 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/new_user").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/products/**")
+                .authorizeHttpRequests().requestMatchers("/students/**","/residencies/**","/universities/**")
                 .authenticated()
                 .and()
-                .formLogin()
+                .httpBasic(withDefaults())
+                .headers().frameOptions().disable()
                 .and()
                 .build();
     }

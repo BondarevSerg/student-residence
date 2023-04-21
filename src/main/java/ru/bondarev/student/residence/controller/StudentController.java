@@ -3,6 +3,7 @@ package ru.bondarev.student.residence.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.bondarev.student.residence.dto.request.StudentRequest;
 import ru.bondarev.student.residence.dto.response.StudentResponse;
@@ -24,7 +25,7 @@ public class StudentController {
      * @return
      */
     @GetMapping()
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<StudentResponse> getAllStudent() {
         return studentService.getAllStudent();
     }
@@ -35,7 +36,7 @@ public class StudentController {
      * @return
      */
     @GetMapping("{id}")
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public StudentResponse getStudentById(@PathVariable("id")Long id) {
         return studentService.getStudentById(id);
     }
@@ -46,7 +47,7 @@ public class StudentController {
      * @return
      */
     @PostMapping()
-
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<HttpStatus> create(@RequestBody StudentRequest studentRequest) {
 
 
@@ -59,7 +60,7 @@ public class StudentController {
      * @return
      */
     @DeleteMapping ("{id}")
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> delete(@PathVariable ("id")Long id) {
 
         studentService.deleteStudent(id);
@@ -74,6 +75,7 @@ public class StudentController {
      * @return
      */
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> update(@PathVariable ("id")Long id, StudentRequest studentRequest) {
 
         studentService.updateStudent(id, studentRequest);

@@ -3,6 +3,7 @@ package ru.bondarev.student.residence.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.bondarev.student.residence.dto.request.ResidenceRequest;
 import ru.bondarev.student.residence.dto.response.ResidenceResponse;
@@ -25,7 +26,7 @@ public class ResidenceController {
      * @return
      */
     @GetMapping("{id}")
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResidenceResponse getResidence(@PathVariable ("id")Long id) {
         return residenceServiceImp.getResidence(id);
     }
@@ -34,7 +35,7 @@ public class ResidenceController {
      * @return
      */
     @GetMapping()
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<ResidenceResponse> getAllResidence() {
         return residenceServiceImp.getAllResidence();
     }
@@ -45,7 +46,7 @@ public class ResidenceController {
      * @return
      */
     @PostMapping()
-
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> create(@RequestBody ResidenceRequest residenceRequest) {
 
 
@@ -59,6 +60,7 @@ public class ResidenceController {
      * @return
      */
     @DeleteMapping ("{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> delete(@PathVariable ("id")Long id) {
 
         residenceServiceImp.deleteResidence(id);
@@ -73,6 +75,7 @@ public class ResidenceController {
      * @return
      */
     @PutMapping  ("{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> update(@PathVariable ("id")Long id,
                                              @RequestBody ResidenceRequest residenceRequest) {
 
