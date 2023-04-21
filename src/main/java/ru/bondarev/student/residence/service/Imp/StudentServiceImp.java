@@ -24,6 +24,12 @@ public class StudentServiceImp implements StudentService {
     private final StudentRepository studentRepository;
 
     private final ResidenceRepository residenceRepository;
+
+    /**
+     * Получение студента по id
+     * @param id
+     * @return
+     */
     @Override
     public StudentResponse getStudentById(Long id) {
         var student = studentRepository.findById(id)
