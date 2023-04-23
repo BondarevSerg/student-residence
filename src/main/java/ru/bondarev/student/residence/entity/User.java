@@ -3,7 +3,9 @@ package ru.bondarev.student.residence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
+/**
+ * Пользователь
+ */
 
 @Entity
 @Table(name = "user")
@@ -41,9 +43,4 @@ public class User {
     private String role;
 
 
-
-//    @ManyToMany(fetch=FetchType.EAGER)
-//    @JoinTable(name = "user_roles",joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-//            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-//    private Set<Role> roles;
 }

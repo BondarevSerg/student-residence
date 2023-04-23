@@ -6,7 +6,6 @@ import org.mapstruct.factory.Mappers;
 import ru.bondarev.student.residence.dto.response.UserResponse;
 import ru.bondarev.student.residence.entity.User;
 
-import java.util.Optional;
 
 @Mapper
 public interface UserMapper {
