@@ -9,16 +9,17 @@ import ru.bondarev.student.residence.service.Imp.UserServiceImp;
 
 
 /**
- * контроллер работы с общежитием
+ * контроллер регистрации нового пользователя
  */
 @RestController
 @RequestMapping("/new_user")
 @RequiredArgsConstructor
 public class AuthController {
     private final UserServiceImp userService;
+
     /**
-     * сохранение пользователя
-     *
+     * Сохранение нового пользователя
+     * @param userRequest
      * @return
      */
     @PostMapping()

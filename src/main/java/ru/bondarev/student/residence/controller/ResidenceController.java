@@ -49,7 +49,6 @@ public class ResidenceController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> create(@RequestBody ResidenceRequest residenceRequest) {
 
-
         residenceServiceImp.saveResidence(residenceRequest);
         return ResponseEntity.ok(HttpStatus.OK);
     }

@@ -3,7 +3,6 @@ package ru.bondarev.student.residence.service.Imp;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.bondarev.student.residence.dto.request.UserRequest;
@@ -21,11 +20,10 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
-
 public class UserServiceImp implements UserService {
     private  final UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * Получение пользователя по id
@@ -67,12 +65,16 @@ public class UserServiceImp implements UserService {
     }
 
     /**
-     * удаление пользователя по id
+     * удаление пользователя по id(кроме ADMIN)
      * @param id
      */
     @Override
     public void deleteUser(Long id) {
-    userRepository.deleteById(id);
+        var user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Не найден пользователь по идентификатору: " + id));
+        if(user.getRole().equals("ROLE_USER")) {
+            userRepository.delete(user);
+        }
 
     }
     /**

@@ -42,14 +42,13 @@ public class StudentController {
     }
 
     /**
-     * сохранение нового студента
+     * сохранение нового студента(пользователь после регистрации может сохранить студента)
      * @param studentRequest
      * @return
      */
     @PostMapping()
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     public ResponseEntity<HttpStatus> create(@RequestBody StudentRequest studentRequest) {
-
 
         studentService.saveStudent(studentRequest);
         return ResponseEntity.ok(HttpStatus.OK);
@@ -82,7 +81,5 @@ public class StudentController {
         return ResponseEntity.ok(HttpStatus.OK);
 
     }
-
-
 
 }
