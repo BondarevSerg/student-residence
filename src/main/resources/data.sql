@@ -6,7 +6,7 @@ insert into user(login, password, role) values
                                              'ROLE_ADMIN');
 -- учебное заведение
 insert into university(name) values ('University');
--- два общежития по 50 койко-мест
+-- два общежития по 50 мест
 insert into residence(capacity, gender, university_id) VALUES (50, 'FEMALE', 1);
 insert into residence(capacity, gender, university_id) VALUES (50, 'MALE', 1);
 
