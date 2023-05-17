@@ -10,7 +10,7 @@ services:
     environment:
       MYSQL_DATABASE: student_residence
       MYSQL_USER: student_user
-      MYSQL_PASSWORD: 1234!Qw5678
-      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: 
     volumes:
       - /var/lib/mysqld:/var/lib/mysql
