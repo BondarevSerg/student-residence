@@ -12,7 +12,7 @@
 
 ### Технологии: 
 Java, Maven, Spring Boot,  Hibernate, JPA, 
-Spring Security, Lombok.
+Spring Security, Lombok, MapStruct, RabbitMQ
 
 
 ### Реализован Backend: 
