@@ -2,13 +2,14 @@ package ru.bondarev.student.residence.service.Imp;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.bondarev.student.residence.dto.request.UserRequest;
 import ru.bondarev.student.residence.dto.response.UserResponse;
 import ru.bondarev.student.residence.entity.User;
 import ru.bondarev.student.residence.mappers.UserMapper;
+import ru.bondarev.student.residence.rabbitMQ.RabbitMQProducerUser;
 import ru.bondarev.student.residence.repositories.UserRepository;
 import ru.bondarev.student.residence.service.UserService;
 
@@ -22,8 +23,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImp implements UserService {
     private  final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
+
+
 
     /**
      * Получение пользователя по id
@@ -54,7 +56,9 @@ public class UserServiceImp implements UserService {
      * @return
      */
     @Override
+
     public void saveUser(UserRequest userRequest) {
+
         var user = User.builder()
                 .login(userRequest.getLogin())
                 .password(passwordEncoder.encode(userRequest.getPassword()))
