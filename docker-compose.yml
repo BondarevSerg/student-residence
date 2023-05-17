@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  db_mysql:
+    container_name: db_mysql
+    image: mysql:8.0
+    ports:
+      - "3311:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: student_residence
+      MYSQL_USER: student_user
+      MYSQL_PASSWORD: 1234!Qw5678
+      MYSQL_ROOT_PASSWORD: 12345678
+    volumes:
+      - /var/lib/mysqld:/var/lib/mysql
